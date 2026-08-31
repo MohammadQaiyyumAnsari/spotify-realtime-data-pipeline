@@ -1,0 +1,27 @@
+[2026-08-31T05:00:19.246+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-31T05:00:19.324+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spotify_minio_to_snowflake_bronze.load_raw_to_snowflake scheduled__2026-08-31T04:00:00+00:00 [queued]>
+[2026-08-31T05:00:19.341+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spotify_minio_to_snowflake_bronze.load_raw_to_snowflake scheduled__2026-08-31T04:00:00+00:00 [queued]>
+[2026-08-31T05:00:19.342+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-31T05:00:19.358+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load_raw_to_snowflake> on 2026-08-31 04:00:00+00:00
+[2026-08-31T05:00:19.374+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'spotify_minio_to_snowflake_bronze', 'load_raw_to_snowflake', 'scheduled__2026-08-31T04:00:00+00:00', '--job-id', '29', '--raw', '--subdir', 'DAGS_FOLDER/minio-to-kafka.py', '--cfg-path', '/tmp/tmpqt188p_p']
+[2026-08-31T05:00:19.380+0000] {standard_task_runner.py:91} INFO - Job 29: Subtask load_raw_to_snowflake
+[2026-08-31T05:00:19.381+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=2981) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-08-31T05:00:19.383+0000] {standard_task_runner.py:64} INFO - Started process 2991 to run task
+[2026-08-31T05:00:19.500+0000] {task_command.py:426} INFO - Running <TaskInstance: spotify_minio_to_snowflake_bronze.load_raw_to_snowflake scheduled__2026-08-31T04:00:00+00:00 [running]> on host db1dda47a602
+[2026-08-31T05:00:19.657+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='spotify_minio_to_snowflake_bronze' AIRFLOW_CTX_TASK_ID='load_raw_to_snowflake' AIRFLOW_CTX_EXECUTION_DATE='2026-08-31T04:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-08-31T04:00:00+00:00'
+[2026-08-31T05:00:19.661+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-31T05:00:19.705+0000] {connection.py:408} INFO - Snowflake Connector for Python Version: 3.11.0, Python Version: 3.12.4, Platform: Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.36
+[2026-08-31T05:00:19.707+0000] {connection.py:1258} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2026-08-31T05:00:20.777+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-08-31T05:00:20.931+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-08-31T05:00:21.100+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-08-31T05:00:22.258+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-08-31T05:00:22.260+0000] {connection.py:773} INFO - closed
+[2026-08-31T05:00:22.370+0000] {connection.py:779} INFO - No async queries seem to be running, deleting session
+[2026-08-31T05:00:22.490+0000] {logging_mixin.py:188} INFO - ✅ Loaded 200 raw records into Snowflake table: SPOTIFY_EVENTS_BRONZE
+[2026-08-31T05:00:22.493+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-08-31T05:00:22.495+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-31T05:00:22.523+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=spotify_minio_to_snowflake_bronze, task_id=load_raw_to_snowflake, run_id=scheduled__2026-08-31T04:00:00+00:00, execution_date=20260831T040000, start_date=20260831T050019, end_date=20260831T050022
+[2026-08-31T05:00:22.578+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-08-31T05:00:22.603+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-08-31T05:00:22.606+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

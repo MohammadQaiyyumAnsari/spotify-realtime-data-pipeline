@@ -1,0 +1,107 @@
+[2026-08-30T20:00:08.003+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-30T20:00:08.062+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-30T19:00:00+00:00 [queued]>
+[2026-08-30T20:00:08.078+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-30T19:00:00+00:00 [queued]>
+[2026-08-30T20:00:08.080+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-30T20:00:08.114+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): extract_data> on 2026-08-30 19:00:00+00:00
+[2026-08-30T20:00:08.135+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'spotify_minio_to_snowflake_bronze', 'extract_data', 'scheduled__2026-08-30T19:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/minio-to-kafka.py', '--cfg-path', '/tmp/tmp30k_zg_0']
+[2026-08-30T20:00:08.143+0000] {standard_task_runner.py:91} INFO - Job 5: Subtask extract_data
+[2026-08-30T20:00:08.144+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1201) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-08-30T20:00:08.145+0000] {standard_task_runner.py:64} INFO - Started process 1214 to run task
+[2026-08-30T20:00:08.498+0000] {task_command.py:426} INFO - Running <TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-30T19:00:00+00:00 [running]> on host db1dda47a602
+[2026-08-30T20:00:08.812+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='spotify_minio_to_snowflake_bronze' AIRFLOW_CTX_TASK_ID='extract_data' AIRFLOW_CTX_EXECUTION_DATE='2026-08-30T19:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-08-30T19:00:00+00:00'
+[2026-08-30T20:00:08.814+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-30T20:00:09.071+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-30T20:00:09.073+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/minio-to-kafka.py", line 50, in extract_from_minio
+    response = s3.list_objects_v2(Bucket=MINIO_BUCKET, Prefix=MINIO_PREFIX)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 1021, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (InvalidAccessKeyId) when calling the ListObjectsV2 operation: The Access Key Id you provided does not exist in our records.
+[2026-08-30T20:00:09.110+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=spotify_minio_to_snowflake_bronze, task_id=extract_data, run_id=scheduled__2026-08-30T19:00:00+00:00, execution_date=20260830T190000, start_date=20260830T200008, end_date=20260830T200009
+[2026-08-30T20:00:09.132+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 5 for task extract_data (An error occurred (InvalidAccessKeyId) when calling the ListObjectsV2 operation: The Access Key Id you provided does not exist in our records.; 1214)
+[2026-08-30T20:00:09.169+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-08-30T20:00:09.210+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-08-30T20:00:09.213+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-08-30T20:30:46.081+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-30T20:30:46.172+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-30T19:00:00+00:00 [queued]>
+[2026-08-30T20:30:46.185+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-30T19:00:00+00:00 [queued]>
+[2026-08-30T20:30:46.186+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-30T20:30:46.207+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): extract_data> on 2026-08-30 19:00:00+00:00
+[2026-08-30T20:30:46.293+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'spotify_minio_to_snowflake_bronze', 'extract_data', 'scheduled__2026-08-30T19:00:00+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/minio-to-kafka.py', '--cfg-path', '/tmp/tmpckw9hz59']
+[2026-08-30T20:30:46.396+0000] {standard_task_runner.py:91} INFO - Job 8: Subtask extract_data
+[2026-08-30T20:30:46.395+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1417) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-08-30T20:30:46.399+0000] {standard_task_runner.py:64} INFO - Started process 1427 to run task
+[2026-08-30T20:30:46.765+0000] {task_command.py:426} INFO - Running <TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-30T19:00:00+00:00 [running]> on host db1dda47a602
+[2026-08-30T20:30:47.550+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='spotify_minio_to_snowflake_bronze' AIRFLOW_CTX_TASK_ID='extract_data' AIRFLOW_CTX_EXECUTION_DATE='2026-08-30T19:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-08-30T19:00:00+00:00'
+[2026-08-30T20:30:47.554+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-30T20:30:48.755+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-30T20:30:48.757+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/minio-to-kafka.py", line 52, in extract_from_minio
+    response = s3.list_objects_v2(Bucket=MINIO_BUCKET, Prefix=MINIO_PREFIX)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 1021, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (InvalidAccessKeyId) when calling the ListObjectsV2 operation: The Access Key Id you provided does not exist in our records.
+[2026-08-30T20:30:48.856+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=spotify_minio_to_snowflake_bronze, task_id=extract_data, run_id=scheduled__2026-08-30T19:00:00+00:00, execution_date=20260830T190000, start_date=20260830T203046, end_date=20260830T203048
+[2026-08-30T20:30:48.908+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 8 for task extract_data (An error occurred (InvalidAccessKeyId) when calling the ListObjectsV2 operation: The Access Key Id you provided does not exist in our records.; 1427)
+[2026-08-30T20:30:48.962+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-08-30T20:30:49.123+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-08-30T20:30:49.128+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-08-30T20:49:56.598+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-30T20:49:56.643+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-30T19:00:00+00:00 [queued]>
+[2026-08-30T20:49:56.652+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-30T19:00:00+00:00 [queued]>
+[2026-08-30T20:49:56.653+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-30T20:49:56.668+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): extract_data> on 2026-08-30 19:00:00+00:00
+[2026-08-30T20:49:56.719+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1570) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-08-30T20:49:56.724+0000] {standard_task_runner.py:64} INFO - Started process 1581 to run task
+[2026-08-30T20:49:56.695+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'spotify_minio_to_snowflake_bronze', 'extract_data', 'scheduled__2026-08-30T19:00:00+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/minio-to-kafka.py', '--cfg-path', '/tmp/tmpy4eapd2m']
+[2026-08-30T20:49:56.736+0000] {standard_task_runner.py:91} INFO - Job 10: Subtask extract_data
+[2026-08-30T20:49:56.913+0000] {task_command.py:426} INFO - Running <TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-30T19:00:00+00:00 [running]> on host db1dda47a602
+[2026-08-30T20:49:57.211+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='spotify_minio_to_snowflake_bronze' AIRFLOW_CTX_TASK_ID='extract_data' AIRFLOW_CTX_EXECUTION_DATE='2026-08-30T19:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-08-30T19:00:00+00:00'
+[2026-08-30T20:49:57.233+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-30T20:49:58.955+0000] {logging_mixin.py:188} INFO - ✅ Extracted 200 events from MinIO and saved to /tmp/spotify_raw.json
+[2026-08-30T20:49:58.960+0000] {python.py:237} INFO - Done. Returned value was: /tmp/spotify_raw.json
+[2026-08-30T20:49:58.961+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-30T20:50:01.270+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=spotify_minio_to_snowflake_bronze, task_id=extract_data, run_id=scheduled__2026-08-30T19:00:00+00:00, execution_date=20260830T190000, start_date=20260830T204956, end_date=20260830T205001
+[2026-08-30T20:50:01.318+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-08-30T20:50:01.352+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-08-30T20:50:01.355+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,19 @@
+[2026-08-31T04:51:38.753+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-31T04:51:38.815+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-31T03:00:00+00:00 [queued]>
+[2026-08-31T04:51:38.831+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-31T03:00:00+00:00 [queued]>
+[2026-08-31T04:51:38.833+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-31T04:51:38.858+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): extract_data> on 2026-08-31 03:00:00+00:00
+[2026-08-31T04:51:38.919+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=2889) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-08-31T04:51:38.906+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'spotify_minio_to_snowflake_bronze', 'extract_data', 'scheduled__2026-08-31T03:00:00+00:00', '--job-id', '25', '--raw', '--subdir', 'DAGS_FOLDER/minio-to-kafka.py', '--cfg-path', '/tmp/tmp_qemgxcu']
+[2026-08-31T04:51:38.927+0000] {standard_task_runner.py:64} INFO - Started process 2899 to run task
+[2026-08-31T04:51:38.928+0000] {standard_task_runner.py:91} INFO - Job 25: Subtask extract_data
+[2026-08-31T04:51:39.171+0000] {task_command.py:426} INFO - Running <TaskInstance: spotify_minio_to_snowflake_bronze.extract_data scheduled__2026-08-31T03:00:00+00:00 [running]> on host db1dda47a602
+[2026-08-31T04:51:39.515+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='spotify_minio_to_snowflake_bronze' AIRFLOW_CTX_TASK_ID='extract_data' AIRFLOW_CTX_EXECUTION_DATE='2026-08-31T03:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-08-31T03:00:00+00:00'
+[2026-08-31T04:51:39.520+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-31T04:51:41.025+0000] {logging_mixin.py:188} INFO - ✅ Extracted 200 events from MinIO and saved to /tmp/spotify_raw.json
+[2026-08-31T04:51:41.028+0000] {python.py:237} INFO - Done. Returned value was: /tmp/spotify_raw.json
+[2026-08-31T04:51:41.031+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-31T04:51:41.102+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=spotify_minio_to_snowflake_bronze, task_id=extract_data, run_id=scheduled__2026-08-31T03:00:00+00:00, execution_date=20260831T030000, start_date=20260831T045138, end_date=20260831T045141
+[2026-08-31T04:51:41.162+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-08-31T04:51:41.217+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-08-31T04:51:41.222+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
