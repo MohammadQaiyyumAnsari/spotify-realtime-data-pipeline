@@ -1,0 +1,5 @@
+docker/logs/
+logs/
+*.log
+.env
+__pycache__/
